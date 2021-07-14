@@ -15,7 +15,7 @@ int main(void)
     }
     printf("\n");
 
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < N - 1; i++) {
         int k = i;
         int tmp = arr[i];
         for (int j = i+1; j < N; j++) {
