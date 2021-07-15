@@ -19,16 +19,24 @@ int main (int argc, char *argv[])
     }
 
     const int key = atoi(argv[1]);
-    printf("Success key %d", key);
-    printf("\nplaintext: ");
-    scanf("%s", text);
+
+    printf("plaintext: ");
+
+    fgets(text, sizeof(text), stdin);
 
     for (int i = 0; i < strlen(text); i++) {
-         if (*(text + i) != ',' && *(text + i) != ' ') {    
-            *(text + i) += key;
-            if (*(text + i) > 'z') {
+        if (*(text + i) >= 'A' && *(text + i) <= 'Z') {
+            if (*(text + i) + key > 'Z') {
+                *(text + i) = *(text + i) % 'Z' + 'A' - 1;
+            }
+           *(text + i) += key;
+        }
+
+        else if (*(text + i) >= 'a' && *(text + i) <= 'z') {
+            if (*(text + i) + key > 'z') {
                 *(text + i) = *(text + i) % 'z' + 'a' - 1;
             }
+            *(text + i) += key;
         }
     }
 
