@@ -27,19 +27,22 @@ int main (int argc, char *argv[])
     for (int i = 0; i < strlen(text); i++) {
         if (*(text + i) >= 'A' && *(text + i) <= 'Z') {
             if (*(text + i) + key > 'Z') {
-                *(text + i) = *(text + i) % 'Z' + 'A' - 1;
+                *(text + i) = ((*(text + i) + key) -'A') % 26 + 'A';
             }
-           *(text + i) += key;
+            else {
+                *(text + i) += key;
+            }
         }
 
         else if (*(text + i) >= 'a' && *(text + i) <= 'z') {
             if (*(text + i) + key > 'z') {
-                *(text + i) = *(text + i) % 'z' + 'a' - 1;
+               *(text + i) = ((*(text + i) + key) -'a') % 26 + 'a';
             }
+            else
             *(text + i) += key;
         }
     }
 
-    printf("\nciphertext: %s", text);
+    printf("ciphertext: %s", text);
     return 0;
 }
